@@ -1,41 +1,40 @@
 @import "tailwindcss";
 
 @theme {
-  /* Two-ink print: everything is paper, ink, or the signal red. */
-  --color-paper: #f1ede3;
-  --color-paper-2: #e9e4d7;
-  --color-ink: #141210;
-  --color-rule: #cdc6b5;
-  --color-muted: #6a6355;
-  --color-signal: #d92b12;
+  --color-ink: #101013;
+  --color-body: #4a4a55;
+  --color-hush: #8a8a97;
+  --color-line: #e8e8ec;
+  --color-cloud: #f6f6f8;
 
-  --font-display: var(--font-display), Georgia, serif;
+  /* Brand. Hot red carries the CTAs; the rest colour the categories. */
+  --color-flare: #ff2e4d;
+  --color-flare-deep: #d91538;
+  --color-sun: #ffc531;
+  --color-mint: #00c2a8;
+  --color-violet: #7b5cff;
+  --color-sky: #2f80ff;
+
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
-  background: var(--color-paper);
+  background: #ffffff;
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--color-signal);
-  color: var(--color-paper);
+  background: var(--color-flare);
+  color: #ffffff;
 }
 
-/* Small caps label used to open every block. */
-.kicker {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-/* Tabular figures keep the numeric columns aligned. */
-.tnum {
-  font-variant-numeric: tabular-nums;
+/* Headlines run big and tight; clamp keeps them sane on phones. */
+.display {
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
 }
 
 @keyframes ticker {
@@ -43,12 +42,15 @@ body {
   to { transform: translateX(-50%); }
 }
 
-.animate-ticker {
-  animation: ticker 45s linear infinite;
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
+.animate-ticker { animation: ticker 30s linear infinite; }
+.animate-bob { animation: bob 7s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-ticker {
-    animation: none;
-  }
+  .animate-ticker,
+  .animate-bob { animation: none; }
 }

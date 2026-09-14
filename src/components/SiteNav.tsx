@@ -1,43 +1,37 @@
+import { Logo } from './Logo';
 import { Shell } from './ui';
 
 const LINKS = [
-    { href: '#rooms', label: 'The room' },
-    { href: '#lifecycle', label: 'Lifecycle' },
-    { href: '#ai', label: 'Planning' },
-    { href: '#types', label: 'Events' }
+    { href: '#how', label: 'How it works' },
+    { href: '#types', label: 'Events' },
+    { href: '#ai', label: 'AI planning' }
 ];
 
 export const SiteNav = () => (
-    <header className="sticky top-0 z-50 border-b border-rule bg-paper/95 backdrop-blur-sm">
-        <Shell className="flex h-[58px] items-center gap-8">
-            <a href="#top" className="flex flex-none items-baseline gap-2">
-                <span className="font-display text-[22px] leading-none tracking-[-0.01em] text-ink">
-                    Spotivity
-                </span>
-                <span className="kicker text-signal">AI</span>
+    <header className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
+        <Shell className="flex h-[68px] items-center gap-8">
+            <a href="#top" className="flex-none">
+                <Logo />
             </a>
 
-            <nav className="hidden flex-1 items-center gap-7 md:flex">
+            <nav className="hidden flex-1 items-center gap-8 md:flex">
                 {LINKS.map((link) => (
                     <a
                         key={link.href}
                         href={link.href}
-                        className="text-[13.5px] font-medium text-muted transition-colors hover:text-ink"
+                        className="text-[15px] font-semibold text-body transition-colors hover:text-ink"
                     >
                         {link.label}
                     </a>
                 ))}
             </nav>
 
-            <div className="ml-auto flex flex-none items-center gap-5 md:ml-0">
-                <span className="kicker hidden text-muted sm:inline">iOS &amp; Android soon</span>
-                <a
-                    href="#waitlist"
-                    className="bg-ink px-4 py-2 text-[13px] font-semibold text-paper transition-colors hover:bg-signal"
-                >
-                    Early access
-                </a>
-            </div>
+            <a
+                href="#get"
+                className="ml-auto rounded-full bg-ink px-5 py-2.5 text-[14.5px] font-extrabold text-white transition-colors hover:bg-flare md:ml-0"
+            >
+                Get the app
+            </a>
         </Shell>
     </header>
 );

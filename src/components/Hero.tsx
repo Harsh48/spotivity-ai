@@ -1,59 +1,76 @@
-import { PhoneMock } from './PhoneMock';
+import { InviteScreen, RoomScreen } from './AppScreens';
+import { PhoneFrame } from './PhoneFrame';
 import { StoreBadges } from './StoreBadges';
-import { InkButton, Rule, Shell, TextLink } from './ui';
-
-const CHANNELS = ['Email', 'Phone', 'WhatsApp'];
+import { Shell } from './ui';
 
 export const Hero = () => (
-    <section id="top" className="pt-16 pb-12 sm:pt-24">
-        <Shell>
-            <div className="grid gap-14 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
-                <div>
-                    <span className="kicker text-muted">
-                        Event rooms · <span className="text-signal">Planned by AI</span>
+    <section id="top" className="relative overflow-hidden bg-cloud pb-10 pt-14 sm:pt-20">
+        {/* Colour wash behind the phones */}
+        <div
+            aria-hidden="true"
+            className="absolute right-[-10%] top-[-12%] hidden h-[760px] w-[760px] rounded-full opacity-[0.18] blur-[10px] lg:block"
+            style={{ background: 'conic-gradient(from 210deg, #ff2e4d, #ffc531, #00c2a8, #7b5cff, #ff2e4d)' }}
+        />
+
+        <Shell className="relative">
+            <div className="grid items-end gap-12 lg:grid-cols-[1fr_auto]">
+                <div className="pb-6 lg:pb-16">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[13.5px] font-bold text-ink shadow-[0_2px_10px_rgba(16,16,19,0.06)]">
+                        <span className="h-2 w-2 rounded-full bg-mint" />
+                        Early access is open
                     </span>
 
-                    <h1 className="mt-6 font-display text-[54px] leading-[0.95] tracking-[-0.02em] text-ink sm:text-[86px]">
+                    <h1 className="display mt-6 text-[52px] sm:text-[88px]">
                         One room
                         <br />
-                        per event.
+                        for every
                         <br />
-                        <em className="text-signal">Nothing</em> in the
-                        <br />
-                        group chat.
+                        <span className="text-flare">event.</span>
                     </h1>
 
-                    <div className="mt-10 grid max-w-2xl gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
-                        <p className="text-[17px] leading-[1.55] text-muted">
-                            A host opens a room, invites people by email, phone or WhatsApp, and runs the
-                            whole event from there — a five-a-side match, a sales offsite, a sunrise trek,
-                            a five-hundred person expo. Spotivity AI does the planning nobody volunteers
-                            for.
-                        </p>
-                    </div>
+                    <p className="mt-7 max-w-lg text-[18px] leading-[1.55] font-medium text-body">
+                        Open a room, invite everyone by email, phone or WhatsApp, and run the whole thing
+                        from your pocket. Spotivity AI does the planning nobody volunteers for.
+                    </p>
 
-                    <div className="mt-9 flex flex-wrap items-center gap-6">
-                        <InkButton href="#waitlist">Get early access</InkButton>
-                        <TextLink href="#lifecycle">See how a room works</TextLink>
-                    </div>
-
-                    <Rule className="mt-12" />
-                    <div className="flex flex-wrap items-center justify-between gap-6 py-5">
-                        <span className="flex items-center gap-5">
-                            <span className="kicker border-r border-rule pr-5 text-muted">Invite by</span>
-                            {CHANNELS.map((channel) => (
-                                <span key={channel} className="text-[14px] font-semibold text-ink">
-                                    {channel}
-                                </span>
-                            ))}
-                        </span>
+                    <div className="mt-8">
                         <StoreBadges />
                     </div>
-                    <Rule />
+
+                    <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[14px] font-bold text-body">
+                        {[
+                            ['⚽', 'Sports'],
+                            ['🏢', 'Corporate'],
+                            ['🏋️', 'Gym'],
+                            ['🥾', 'Treks'],
+                            ['🎤', 'Expos']
+                        ].map(([emoji, label]) => (
+                            <span key={label} className="inline-flex items-center gap-1.5">
+                                <span aria-hidden="true">{emoji}</span>
+                                <span>{label}</span>
+                            </span>
+                        ))}
+                        <span className="text-hush">+ a lot more</span>
+                    </div>
                 </div>
 
-                <div className="lg:pt-6">
-                    <PhoneMock />
+                {/* Two devices, the second tucked behind */}
+                <div className="relative mx-auto flex items-end justify-center pb-0 lg:pr-8">
+                    <div className="hidden translate-y-8 -rotate-6 sm:block">
+                        <PhoneFrame width={216} time="9:41">
+                            <InviteScreen />
+                        </PhoneFrame>
+                    </div>
+                    <div className="animate-bob -ml-10 hidden sm:block">
+                        <PhoneFrame width={268} time="9:41">
+                            <RoomScreen />
+                        </PhoneFrame>
+                    </div>
+                    <div className="sm:hidden">
+                        <PhoneFrame width={244} time="9:41">
+                            <RoomScreen />
+                        </PhoneFrame>
+                    </div>
                 </div>
             </div>
         </Shell>

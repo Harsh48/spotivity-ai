@@ -1,7 +1,7 @@
 # Spotivity AI — landing page
 
-One room per event. A host opens a room, invites people by email, phone or
-WhatsApp, and runs the whole event from there. AI does the planning.
+One room for every event. A host opens a room, invites people by email, phone or
+WhatsApp, and runs the whole thing from their pocket. AI does the planning.
 
 ## Run it
 
@@ -12,36 +12,46 @@ npm run dev        # http://localhost:3000
 
 ## What's here
 
-A single marketing page (`src/app/page.tsx`) composed from section components
-in `src/components`. No CMS, no database.
+A single marketing page (`src/app/page.tsx`) composed from section components in
+`src/components`. No CMS, no database.
 
 | Section | File |
 | --- | --- |
-| Masthead | `SiteNav.tsx` |
-| Hero + device shot | `Hero.tsx`, `PhoneMock.tsx` |
-| Ticker of event names | `Marquee.tsx` |
-| 01 The room — invite channels | `Rooms.tsx` |
-| 02 Lifecycle — six stages | `Lifecycle.tsx` |
-| 03 Planning — what the AI does | `AiPlanning.tsx` |
-| 04 Events — types, grouped | `EventTypes.tsx` |
-| 05 Early access + store badges | `Waitlist.tsx`, `StoreBadges.tsx` |
+| Nav | `SiteNav.tsx` |
+| Hero + two devices | `Hero.tsx` |
+| Brand ticker | `Marquee.tsx` |
+| How it works | `HowItWorks.tsx` |
+| Event categories | `Categories.tsx` |
+| AI planning (dark) | `AiPlanning.tsx` |
+| Lifecycle, six stages | `Lifecycle.tsx` |
+| Early access + store badges | `GetApp.tsx`, `StoreBadges.tsx` |
 
-Shared primitives (`Shell`, `Rule`, `SectionHead`, buttons) live in
-`src/components/ui.tsx`.
+## The phone mockups
 
-## Design
+`PhoneFrame.tsx` draws real iPhone 15 Pro hardware. Every measurement is the
+device's point value scaled by `width / 393` — its logical screen width — so the
+Dynamic Island (125×36), corner radii (55/44), bezel, side buttons and home
+indicator (140×5) stay correct at any size.
 
-Two inks on paper. Cream ground (`--color-paper`), near-black type
-(`--color-ink`), one signal red (`--color-signal`) used sparingly for emphasis
-and numbering. Layout is built from hairline rules rather than cards, and the
-page is numbered 01–05 so it reads as a programme. Instrument Serif for
-display, Archivo for everything else. Tokens are in `src/app/globals.css`.
+Screens live in `AppScreens.tsx` and are authored at the real logical size
+(393pt wide); the frame scales them down. Type sizes in there are the same
+numbers you would use in the app itself.
+
+## Brand
+
+- **Red `#ff2e4d`** carries the CTAs; sky, mint, violet and sun colour the
+  category tiles. Tokens are in `src/app/globals.css`.
+- **Figtree**, weights up to 900. Headlines are set with `.display`
+  (`-0.045em` tracking, `0.95` leading).
+- **The mark** (`Logo.tsx`) is a map pin with a spark cut out of it — pin for
+  the spot, spark for the AI. `icon.svg` is the favicon, `apple-icon.png` the
+  touch icon.
 
 ## Known gaps
 
 - **The waitlist does not persist.** `src/app/api/waitlist/route.ts` validates
-  the address and logs it to the server. Wire it to a database or an email
-  provider before this goes in front of anyone, or sign-ups are lost silently.
-- **Store badges are type, not links.** The apps are not published. They say
-  "coming soon" and deliberately are not tappable.
-- Copy and numbers in the device shot are illustrative.
+  the address and logs it. Wire it to a database or an email provider before
+  this goes in front of anyone, or sign-ups are lost silently.
+- **Store badges are not links.** The apps are not published; they say coming
+  soon and are deliberately not tappable.
+- Copy and numbers inside the device screens are illustrative.

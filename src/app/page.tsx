@@ -1,12 +1,12 @@
 import { AiPlanning } from '@/components/AiPlanning';
-import { EventTypes } from '@/components/EventTypes';
+import { Categories } from '@/components/Categories';
+import { GetApp } from '@/components/GetApp';
 import { Hero } from '@/components/Hero';
+import { HowItWorks } from '@/components/HowItWorks';
 import { Lifecycle } from '@/components/Lifecycle';
 import { Marquee } from '@/components/Marquee';
-import { Rooms } from '@/components/Rooms';
 import { SiteFooter } from '@/components/SiteFooter';
 import { SiteNav } from '@/components/SiteNav';
-import { Waitlist } from '@/components/Waitlist';
 
 export default function Home() {
     return (
@@ -15,11 +15,11 @@ export default function Home() {
             <main>
                 <Hero />
                 <Marquee />
-                <Rooms />
-                <Lifecycle />
+                <HowItWorks />
+                <Categories />
                 <AiPlanning />
-                <EventTypes />
-                <Waitlist />
+                <Lifecycle />
+                <GetApp />
             </main>
             <SiteFooter />
         </>

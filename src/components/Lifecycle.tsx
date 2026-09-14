@@ -1,71 +1,39 @@
-import { Section, SectionHead } from './ui';
+import { Display, Section, Tag } from './ui';
 
 const STAGES = [
-    {
-        n: '01',
-        title: 'Set it up',
-        body: 'Type, date window, place. The room takes shape from a handful of details.',
-        out: 'A room'
-    },
-    {
-        n: '02',
-        title: 'Invite and fill',
-        body: 'Send by email, phone or WhatsApp. Watch RSVPs land, nudge the quiet ones, hold a waitlist.',
-        out: 'A guest list'
-    },
-    {
-        n: '03',
-        title: 'Sort logistics',
-        body: 'Venue, kit, tickets, agenda, dietary notes, who brings what — tracked against that list.',
-        out: 'A run sheet'
-    },
-    {
-        n: '04',
-        title: 'Split the money',
-        body: 'Per-head costs, deposits, who has paid. No spreadsheet, no chasing anyone in a chat.',
-        out: 'A ledger'
-    },
-    {
-        n: '05',
-        title: 'Run the day',
-        body: 'Check-in, live updates, last-minute changes pushed on the channel each guest joined from.',
-        out: 'An event'
-    },
-    {
-        n: '06',
-        title: 'Close it out',
-        body: 'Photos, feedback, a settled ledger. Clone the room when you want to run it again.',
-        out: 'A repeat'
-    }
+    ['Set it up', 'Type, date, place. The room takes shape in under a minute.'],
+    ['Invite and fill', 'Send, watch RSVPs land, nudge the quiet ones, hold a waitlist.'],
+    ['Sort logistics', 'Venue, kit, tickets, agenda, dietary notes, who brings what.'],
+    ['Split the money', 'Per-head costs, deposits, who has paid. No spreadsheet.'],
+    ['Run the day', 'Check-in and live updates on whatever channel each guest joined from.'],
+    ['Close it out', 'Photos, feedback, a settled ledger. Clone it to run it again.']
 ];
 
 export const Lifecycle = () => (
-    <Section id="lifecycle" className="bg-paper-2">
-        <SectionHead
-            index="02"
-            kicker="Lifecycle"
-            title={
-                <>
-                    From the first idea
-                    <br />
-                    to the last receipt.
-                </>
-            }
-            lead="Most tools stop at the invite and leave the rest to you. Spotivity carries the event the whole way, so nothing leaks into threads and half-finished spreadsheets."
-        />
+    <Section id="lifecycle">
+        <div className="max-w-2xl">
+            <Tag color="var(--color-mint)">The whole lifecycle</Tag>
+            <Display className="mt-5">
+                Most apps stop
+                <br />
+                at the invite.
+            </Display>
+            <p className="mt-5 text-[17.5px] leading-[1.55] font-medium text-body">
+                Spotivity carries the event the whole way — through the logistics, the money and the day
+                itself — so nothing leaks into a thread or a half-finished spreadsheet.
+            </p>
+        </div>
 
-        <ol className="mt-14 border-t border-rule">
-            {STAGES.map((stage) => (
-                <li
-                    key={stage.n}
-                    className="grid items-baseline gap-2 border-b border-rule py-5 sm:grid-cols-[64px_200px_1fr_120px] sm:gap-6"
-                >
-                    <span className="tnum kicker text-signal">{stage.n}</span>
-                    <h3 className="font-display text-[24px] leading-tight text-ink">{stage.title}</h3>
-                    <p className="text-[15px] leading-[1.55] text-muted">{stage.body}</p>
-                    <span className="kicker text-right text-muted">{stage.out}</span>
-                </li>
+        <div className="mt-12 grid gap-px overflow-hidden rounded-[26px] bg-line sm:grid-cols-2 lg:grid-cols-3">
+            {STAGES.map(([title, body], index) => (
+                <div key={title} className="bg-white p-7">
+                    <span className="text-[13px] font-black tracking-[0.1em] text-flare">
+                        {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="mt-3 text-[22px] font-extrabold tracking-[-0.03em]">{title}</h3>
+                    <p className="mt-2 text-[15px] leading-[1.55] font-medium text-body">{body}</p>
+                </div>
             ))}
-        </ol>
+        </div>
     </Section>
 );
