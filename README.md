@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Spotivity AI — landing page
 
-## Getting Started
+One room per event. A host opens a room, invites people by email, phone or
+WhatsApp, and runs the whole event from there. AI does the planning.
 
-First, run the development server:
+## Run it
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What's here
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+A single marketing page (`src/app/page.tsx`) composed from section components
+in `src/components`. No CMS, no database.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Section | File |
+| --- | --- |
+| Masthead | `SiteNav.tsx` |
+| Hero + device shot | `Hero.tsx`, `PhoneMock.tsx` |
+| Ticker of event names | `Marquee.tsx` |
+| 01 The room — invite channels | `Rooms.tsx` |
+| 02 Lifecycle — six stages | `Lifecycle.tsx` |
+| 03 Planning — what the AI does | `AiPlanning.tsx` |
+| 04 Events — types, grouped | `EventTypes.tsx` |
+| 05 Early access + store badges | `Waitlist.tsx`, `StoreBadges.tsx` |
 
-## Learn More
+Shared primitives (`Shell`, `Rule`, `SectionHead`, buttons) live in
+`src/components/ui.tsx`.
 
-To learn more about Next.js, take a look at the following resources:
+## Design
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Two inks on paper. Cream ground (`--color-paper`), near-black type
+(`--color-ink`), one signal red (`--color-signal`) used sparingly for emphasis
+and numbering. Layout is built from hairline rules rather than cards, and the
+page is numbered 01–05 so it reads as a programme. Instrument Serif for
+display, Archivo for everything else. Tokens are in `src/app/globals.css`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Known gaps
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **The waitlist does not persist.** `src/app/api/waitlist/route.ts` validates
+  the address and logs it to the server. Wire it to a database or an email
+  provider before this goes in front of anyone, or sign-ups are lost silently.
+- **Store badges are type, not links.** The apps are not published. They say
+  "coming soon" and deliberately are not tappable.
+- Copy and numbers in the device shot are illustrative.
